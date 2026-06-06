@@ -1,0 +1,77 @@
+{
+  "nav": {
+    "campaign": "Campaign",
+    "tools": "Tools",
+    "about": "About"
+  },
+  "buttons": {
+    "exploreCampaign": "Explore Campaign",
+    "openTools": "Open Tools",
+    "generateNames": "Generate Names",
+    "backToTools": "Back to Tools",
+    "readCampaign": "Read the campaign"
+  },
+  "nameGenerator": {
+    "race": "Race",
+    "gender": "Gender",
+    "type": "Type",
+    "archetype": "Archetype",
+    "count": "Count"
+  },
+  "home": {
+    "aboutTitle": "About the campaign",
+    "aboutLead": "Lore, an interactive world map, factions, and DM tools — all in one place.",
+    "cardPreface": "Preface",
+    "cardPrefaceHint": "The fall of the Technocracy",
+    "cardOverview": "Overview",
+    "cardOverviewHint": "Campaign tone and pillars of play",
+    "cardMap": "World map",
+    "cardMapHint": "Regions and land descriptions"
+  },
+  "campaign": {
+    "description": "Beneath the golden sands of Tul'Assar lies the legacy of the Technocracy — the most advanced civilization of its age, vanished more than two centuries ago. Dust devils and storms have finally begun to recede, opening the way to ruins and secrets, drawing seekers of wealth, knowledge, and glory.\n\nThe desert begins to return what it once swallowed — and what, perhaps, was never meant to be found again.",
+    "hub": {
+      "eyebrow": "Campaign Hub",
+      "title": "Tephirot",
+      "subtitle": "Lore, factions, and the secrets of the desert — a living campaign bible for the table."
+    },
+    "placeholder": "Content for «{section}» will appear here.",
+    "gmLocked": "This section is for game masters in the campaign. Content will unlock when you have GM access.",
+    "sections": {
+      "preface": "Preface",
+      "campaignOverview": "Campaign Overview",
+      "worldMap": "World Map",
+      "desert": "The Desert",
+      "factions": "Factions",
+      "gmOnly": "For Game Masters",
+      "toc": "Contents"
+    },
+    "overview": {
+      "intro": "Tephirot is an adventure set in the desert lands of a fallen Technocracy. You can play it as a series of unconnected quests or as a sequential narrative that draws players into exploring the world.",
+      "pillars": [
+        {
+          "title": "Exploration",
+          "text": "Characters venture on dangerous expeditions deep into the scorched desert, where the dunes hide the ruins of the fallen Technocracy. The reason for that realm's demise is lost in the sands, and players must unravel the mystery. The path to ancient temples, abandoned cities, and lost knowledge and treasure leads through natural calamities, sandstorms, and ancient traps."
+        },
+        {
+          "title": "Interaction",
+          "text": "Tul'Assar is not uninhabited. Players will encounter newly rebuilt settlements and cities, each with its own customs and beliefs. Many rival factions also claim the legacy of the fallen Technocracy. Whether allying or clashing with them, pursuing grand goals or personal quests—from recovering lost history to hunger for profit—characters will inevitably find themselves at the heart of others' intrigues."
+        },
+        {
+          "title": "Combat and survival",
+          "text": "The desert of Tul'Assar is merciless. The foremost visible foes are the disciplined, brutal hobgoblin legions that roam the sands and harry scattered settlements. Beyond them, ruins swarm with dangerous undead, aggressive wild flora and fauna, and magical creatures that have mutated and adapted to the harsh climate. Yet sometimes the deadliest enemies are not enemy blades but plain hunger and thirst."
+        }
+      ]
+    },
+    "preface": {
+      "imageAlt": "Desert dunes and ruins of Tul'Osar at dusk",
+      "paragraphs": [
+        "The golden age of the Tul'Osar Technocracy ended in an instant.",
+        "These lands were once a flourishing edge of oases and deep canyons, where magic and technology advanced hand in hand. Now only sand and ruins remain.",
+        "More than two hundred years ago, the catastrophe that destroyed the neighboring elven kingdom of Elendor reached these lands as well. Endless sandstorms, dust devils, rifts, and inexplicable anomalies turned a thriving realm into a lifeless desert.",
+        "And now, two centuries later, the desert begins to return what it once swallowed.",
+        "The storms weaken, and the sands gradually reveal their secrets. Forgotten cities, buried temples, and ruins of the ancient Technocracy rise from beneath the dunes. With them return lost knowledge, untold treasures, and secrets that perhaps should have stayed buried forever."
+      ]
+    }
+  }
+}
