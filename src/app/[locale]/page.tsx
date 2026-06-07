@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { HomeAboutSection } from "@/components/home-about-section";
+import { HeroBackground } from "@/components/hero-background";
 import { HeroParticles } from "@/components/hero-particles";
 import { PageShell } from "@/components/page-shell";
 import { Link } from "@/i18n/navigation";
@@ -18,15 +18,7 @@ export default async function Home() {
       >
         {/* Background */}
         <div className="absolute inset-0 z-0">
-          <Image
-            src="/campaign-hero.png"
-            alt=""
-            fill
-            priority
-            className="object-cover object-[50%_38%] scale-[1.08]"
-            sizes="100vw"
-            aria-hidden
-          />
+          <HeroBackground />
           <div
             className="pointer-events-none absolute inset-0 bg-zinc-950/10"
             aria-hidden
