@@ -49,20 +49,36 @@ export const REGIONS: Region[] = [
     svgPathId: "Elendor",
     nameRu: "Элендор",
     nameEn: "Elendor",
+    images: [
+      {
+        src: "/Elendor2.jpg",
+        altRu: "Элендор — руины эльфийского королевства",
+        altEn: "Elendor — ruins of the elven kingdom",
+        placement: "start",
+      },
+    ],
     descriptionRu:
-      "Южные земли Элендора хранят руины и тайны, оставшиеся после ухода старых империй.",
+      "Руины эльфийского королевства. После катастрофы ещё никому не удалось добраться до этих мест и вернуться, чтобы рассказать, что там увидел.",
     descriptionEn:
-      "The southern reaches of Elendor hold ruins and secrets left behind by fallen empires.",
+      "Ruins of the elven kingdom. Since the catastrophe, no one has yet reached those lands and returned to tell what they saw.",
     pathD:
       "M1632,3357c58.45-2.16,467.09-134.19,570-143s614.66,19.78,704,20,240.37-14.04,252,40-451.2,315.67-422,387,422.61,32.83,427,80-207.66,133.91-210,181,130.39,79.72,121,136-120.55-4.98-132,29,21.69,123.07,4,150-97.19-28.23-120-4,36,365.55,20,368-176.24,112.05-257,74-114.85-283.65-195-277-115.66,59.66-156,89-409.01,136.51-447,141-241.52-111.25-266-174-127.58-265.24-152-317-83.49-159.16-83-168c-42.07-26.8,23.71-84.15-35-170C1229.16,3990.79,976.507,3381.21,1632,3357Z",
   },
   {
     id: "tul-assar-desert",
     svgPathId: "Tul_Assar_desert",
-    nameRu: "Тул'ассар",
+    nameRu: "Тул'Ассар",
     nameEn: "Tul'Assar",
+    images: [
+      {
+        src: "/Bazar.png",
+        altRu: "Тул'Ассар — базар",
+        altEn: "Tul'Assar — bazaar",
+        placement: "start",
+      },
+    ],
     descriptionRu:
-      "Тул'ассар — некогда великое царство людей, прекрасный оазис с развитой магией и экономикой. Во время Элендорской Катастрофы оно было почти полностью уничтожено. Смерчи, землетресения, невиданные доселе песчаные бури утопили большую часть городов в песках. Те, кому удалось выжить, бежали на север в земли Даскала либо на запад в На'Кхарет.\n\nОколо пятидесяти лет назад природные катаклизмы стихли достаточно, чтобы вновь началось заселение пустыни, но оно идёт довольно медленно и в основном лишь с северной части. Дюны похоронили много богатств.",
+      "Тул'Ассар — некогда великое царство людей, прекрасный оазис с развитой магией и экономикой. Во время Элендорской Катастрофы оно было почти полностью уничтожено. Смерчи, землетресения, невиданные доселе песчаные бури утопили большую часть городов в песках. Те, кому удалось выжить, бежали на север в земли Даскала либо на запад в На'Кхарет.\n\nОколо пятидесяти лет назад природные катаклизмы стихли достаточно, чтобы вновь началось заселение пустыни, но оно идёт довольно медленно и в основном лишь с северной части. Дюны похоронили много богатств.",
     descriptionEn:
       "Tul'Assar was once a great human realm—a splendid oasis with advanced magic and a thriving economy. During the Elendor Catastrophe it was nearly wiped out entirely. Dust devils, earthquakes, and sandstorms unlike any seen before buried most of its cities beneath the dunes. Those who survived fled north to the lands of Daskal or west to Na'Khareth.\n\nSome fifty years ago the natural calamities subsided enough for resettlement of the desert to begin again, but progress is slow and comes mainly from the northern reaches. The dunes have entombed vast wealth.",
     pathD:
@@ -73,20 +89,28 @@ export const REGIONS: Region[] = [
     svgPathId: "Na_Qareth_",
     nameRu: "На'Кхарет",
     nameEn: "Na'Khareth",
+    images: [
+      {
+        src: "/NaQareth1.jpg",
+        altRu: "На'Кхарет",
+        altEn: "Na'Khareth",
+        placement: "start",
+      },
+    ],
     descriptionRu:
-      "На'Кхарет — самое крупное, но при этом довольно бедное государство в пустыне.",
+      "На'Кхарет — самое густонаселённое, но при этом довольно бедное пустынное королевство.",
     descriptionEn:
-      "Na'Khareth is the largest yet one of the poorest realms in the desert.",
+      "Na'Khareth is the most densely populated yet one of the poorest desert kingdoms.",
     sectionsRu: [
       {
         paragraphs: [
-          "На'Кхарет — самое крупное, но при этом довольно бедное государство в пустыне. Раньше это была просто сеть разрозненных поселений: часть деревень строилась у воды, а остальные прятались на дне глубоких каньонов. Со временем они объединились. Людей здесь живет много, но из-за дефицита ресурсов страна едва сводит концы с концами.",
+          "На'Кхарет — самое густонаселённое, но при этом довольно бедное пустынное королевство. Раньше это была просто сеть разрозненных поселений: часть деревень строилась у воды, а остальные прятались на дне глубоких каньонов. Со временем они объединились. Людей здесь живет много, но из-за дефицита ресурсов народ весьма беден.",
         ],
       },
       {
         heading: "Население",
         paragraphs: [
-          "Народ здесь крайне разношерстный. В основном это потомки беженцев из Тул'ассара, а также все те, кто в разное время скрывался от властей Даскала — от политических изгоев до преступников. Единой культуры у них нет, это скорее вынужденный союз очень разных людей.",
+          "Народ здесь крайне разношерстный. В основном это потомки беженцев из Тул'Ассара, а также все те, кто в разное время скрывался от властей Даскала — от политических изгоев до преступников. Единой культуры у них нет, это скорее вынужденный союз очень разных людей.",
         ],
       },
       {
@@ -101,7 +125,7 @@ export const REGIONS: Region[] = [
     sectionsEn: [
       {
         paragraphs: [
-          "Na'Khareth is the largest yet one of the poorest realms in the desert. It was once merely a scattering of settlements: some villages built by water, others hidden in the depths of deep canyons. Over time they united. Many people live here, but scarce resources mean the country barely makes ends meet.",
+          "Na'Khareth is the most densely populated yet one of the poorest desert kingdoms. It was once merely a scattering of settlements: some villages built by water, others hidden in the depths of deep canyons. Over time they united. Many people live here, but scarce resources leave the populace very poor.",
         ],
       },
       {

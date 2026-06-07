@@ -10,14 +10,17 @@ const SECTION_LINKS = [
   { id: "factions", titleKey: "factions" },
 ] as const;
 
-function scrollToSection(id: string) {
-  const el = document.getElementById(id);
-  if (el) {
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-}
+type SectionId = (typeof SECTION_LINKS)[number]["id"] | "players";
 
-export function CampaignMobileNav() {
+type CampaignMobileNavProps = {
+  activeId: SectionId;
+  onNavigate?: (id: SectionId) => void;
+};
+
+export function CampaignMobileNav({
+  activeId,
+  onNavigate,
+}: CampaignMobileNavProps) {
   const t = useTranslations("campaign");
 
   return (
@@ -26,20 +29,29 @@ export function CampaignMobileNav() {
       aria-label={t("sections.toc")}
     >
       <ul className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {SECTION_LINKS.map(({ id, titleKey }) => (
-          <li key={id} className="shrink-0">
-            <a
-              href={`#${id}`}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection(id);
-              }}
-              className="inline-block rounded-md border border-zinc-700 bg-zinc-900/70 px-3 py-1.5 text-xs font-medium uppercase tracking-widest text-zinc-400 transition-colors hover:border-amber-900/50 hover:text-amber-300"
-            >
-              {t(`sections.${titleKey}`)}
-            </a>
-          </li>
-        ))}
+        {SECTION_LINKS.map(({ id, titleKey }) => {
+          const isActive = activeId === id;
+
+          return (
+            <li key={id} className="shrink-0">
+              <a
+                href={`#${id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate?.(id);
+                }}
+                className={`inline-block rounded-md border px-3 py-1.5 text-xs font-medium uppercase tracking-widest transition-colors ${
+                  isActive
+                    ? "border-amber-500/60 bg-amber-500/15 text-amber-300"
+                    : "border-zinc-700 bg-zinc-900/70 text-zinc-400 hover:border-amber-900/50 hover:text-amber-300"
+                }`}
+                aria-current={isActive ? "location" : undefined}
+              >
+                {t(`sections.${titleKey}`)}
+              </a>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );

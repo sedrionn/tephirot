@@ -1,8 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { CampaignMobileNav } from "@/components/campaign/campaign-mobile-nav";
+import {
+  getActiveCampaignSectionId,
+  scrollToCampaignTarget,
+} from "@/components/campaign/campaign-section-nav";
 import { OverviewSection } from "@/components/campaign/overview-section";
 import { PrefaceSection } from "@/components/campaign/preface-section";
 import { WorldMap } from "@/components/campaign/world-map";
@@ -22,44 +26,87 @@ const LOCKED_SECTION = {
 
 type SectionId = (typeof SECTIONS)[number]["id"] | typeof LOCKED_SECTION.id;
 
-function scrollToSection(id: string) {
-  const el = document.getElementById(id);
-  if (el) {
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
+const SCROLL_SPY_SECTION_IDS = [
+  ...SECTIONS.map((section) => section.id),
+  LOCKED_SECTION.id,
+] as const;
+
+const SCROLL_END_DELAY_MS = 120;
+
+function scrollToSection(id: SectionId) {
+  scrollToCampaignTarget(id);
 }
 
 export function CampaignScrollLayout() {
   const t = useTranslations("campaign");
   const [activeId, setActiveId] = useState<SectionId>("preface");
+  const scrollingToRef = useRef<SectionId | null>(null);
+  const scrollEndTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const sectionIds = [...SECTIONS.map((s) => s.id), LOCKED_SECTION.id];
-    const elements = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => el !== null);
+    let rafId = 0;
 
-    if (elements.length === 0) return;
+    const syncActiveSection = () => {
+      if (scrollingToRef.current) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((entry) => entry.isIntersecting);
-        if (visible.length === 0) return;
+      const next = getActiveCampaignSectionId(SCROLL_SPY_SECTION_IDS);
+      setActiveId((current) => (current === next ? current : next));
+    };
 
-        const mostVisible = visible.reduce((best, entry) =>
-          entry.intersectionRatio > best.intersectionRatio ? entry : best,
-        );
-        setActiveId(mostVisible.target.id as SectionId);
-      },
-      {
-        rootMargin: "-15% 0px -50% 0px",
-        threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
-      },
-    );
+    const onScrollOrResize = () => {
+      if (rafId !== 0) return;
 
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+      rafId = window.requestAnimationFrame(() => {
+        rafId = 0;
+        syncActiveSection();
+
+        if (scrollEndTimerRef.current !== null) {
+          window.clearTimeout(scrollEndTimerRef.current);
+        }
+
+        scrollEndTimerRef.current = window.setTimeout(() => {
+          scrollingToRef.current = null;
+          syncActiveSection();
+        }, SCROLL_END_DELAY_MS);
+      });
+    };
+
+    syncActiveSection();
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize);
+
+    const resizeObserver =
+      typeof ResizeObserver !== "undefined"
+        ? new ResizeObserver(() => {
+            syncActiveSection();
+          })
+        : null;
+
+    SCROLL_SPY_SECTION_IDS.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) {
+        resizeObserver?.observe(el);
+      }
+    });
+
+    return () => {
+      if (rafId !== 0) {
+        window.cancelAnimationFrame(rafId);
+      }
+      if (scrollEndTimerRef.current !== null) {
+        window.clearTimeout(scrollEndTimerRef.current);
+      }
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+      resizeObserver?.disconnect();
+    };
   }, []);
+
+  function navigateToSection(id: SectionId) {
+    scrollingToRef.current = id;
+    setActiveId(id);
+    scrollToSection(id);
+  }
 
   function navLinkClass(id: string, isActive: boolean) {
     return `relative block border-l-2 py-2.5 pl-5 pr-3 text-sm font-medium uppercase tracking-widest transition-colors ${
@@ -90,7 +137,7 @@ export function CampaignScrollLayout() {
                     href={`#${id}`}
                     onClick={(e) => {
                       e.preventDefault();
-                      scrollToSection(id);
+                      navigateToSection(id);
                     }}
                     className={navLinkClass(id, isActive)}
                     aria-current={isActive ? "location" : undefined}
@@ -133,7 +180,10 @@ export function CampaignScrollLayout() {
           </p>
         </header>
 
-        <CampaignMobileNav />
+        <CampaignMobileNav
+          activeId={activeId}
+          onNavigate={navigateToSection}
+        />
 
         <div className="space-y-4">
           {SECTIONS.map(({ id, titleKey }) => {

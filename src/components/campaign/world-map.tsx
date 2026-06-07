@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useLocale } from "next-intl";
 import { useCallback, useState } from "react";
 import { RegionArticle } from "@/components/campaign/region-article";
+import { scrollToCampaignTarget } from "@/components/campaign/campaign-section-nav";
 import {
   REGIONS,
   getRegionName,
@@ -12,12 +13,12 @@ import {
 
 const MAP_VIEWBOX = "0 0 3584 4780";
 
-function scrollToRegion(id: RegionId) {
-  const el = document.getElementById(id);
-  if (el) {
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-}
+/** Visual separators only — not separate campaign sections */
+const REGION_DIVIDER_AFTER = new Set<RegionId>([
+  "elendor",
+  "tul-assar-desert",
+  "na-qareth",
+]);
 
 export function WorldMap() {
   const locale = useLocale();
@@ -26,7 +27,7 @@ export function WorldMap() {
 
   const handleRegionSelect = useCallback((id: RegionId) => {
     setFocusedId(id);
-    scrollToRegion(id);
+    scrollToCampaignTarget(id);
   }, []);
 
   const activeId = hoveredId ?? focusedId;
@@ -118,9 +119,21 @@ export function WorldMap() {
         </ul>
       </nav>
 
-      <div className="mt-14 space-y-16 border-t border-zinc-800/60 pt-14">
-        {REGIONS.map((region) => (
-          <RegionArticle key={region.id} region={region} locale={locale} />
+      <div className="mt-14 border-t border-zinc-800/60 pt-14">
+        {REGIONS.map((region, index) => (
+          <div
+            key={region.id}
+            className={[
+              index > 0 ? "pt-16" : "",
+              REGION_DIVIDER_AFTER.has(region.id)
+                ? "border-b border-zinc-800/60 pb-16"
+                : "",
+            ]
+              .filter(Boolean)
+              .join(" ")}
+          >
+            <RegionArticle region={region} locale={locale} />
+          </div>
         ))}
       </div>
     </div>

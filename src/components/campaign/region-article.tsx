@@ -132,16 +132,18 @@ export function RegionArticle({ region, locale }: RegionArticleProps) {
           return (
             <div
               key={sectionIndex}
-              className="grid gap-6 md:grid-cols-[minmax(0,280px)_1fr] md:items-start md:gap-8"
+              className={
+                image
+                  ? "grid gap-6 md:grid-cols-[minmax(0,280px)_1fr] md:items-start md:gap-8"
+                  : undefined
+              }
             >
-              <div className={image ? "" : "hidden md:block"} aria-hidden={!image}>
-                {image ? (
-                  <RegionThumbnail
-                    image={image}
-                    onOpen={() => openLightbox(image)}
-                  />
-                ) : null}
-              </div>
+              {image ? (
+                <RegionThumbnail
+                  image={image}
+                  onOpen={() => openLightbox(image)}
+                />
+              ) : null}
               <div>
                 {sectionIndex === 0 && (
                   <h3 className="mb-4 font-serif text-2xl font-semibold text-amber-100/90">
