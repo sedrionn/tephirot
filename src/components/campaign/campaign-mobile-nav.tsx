@@ -8,8 +8,8 @@ const SECTION_LINKS = [
   { id: "preface", titleKey: "preface" },
   { id: "campaign-overview", titleKey: "campaignOverview" },
   { id: "world-map", titleKey: "worldMap" },
-  { id: "desert", titleKey: "desert" },
   { id: "factions", titleKey: "factions" },
+  { id: "desert", titleKey: "desert" },
 ] as const;
 
 type SectionId = (typeof SECTION_LINKS)[number]["id"] | "players";

@@ -19,8 +19,8 @@ const SECTIONS = [
   { id: "preface", titleKey: "preface" },
   { id: "campaign-overview", titleKey: "campaignOverview" },
   { id: "world-map", titleKey: "worldMap" },
-  { id: "desert", titleKey: "desert" },
   { id: "factions", titleKey: "factions" },
+  { id: "desert", titleKey: "desert" },
 ] as const;
 
 const LOCKED_SECTION = {
