@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useLocale } from "next-intl";
 import { useCallback, useState } from "react";
+import { CampaignTextPanel } from "@/components/campaign/campaign-text-panel";
 import { RegionArticle } from "@/components/campaign/region-article";
 import { scrollToCampaignTarget } from "@/components/campaign/campaign-section-nav";
 import {
@@ -13,13 +14,7 @@ import {
 
 const MAP_VIEWBOX = "0 0 3584 4780";
 
-/** Visual separators only — not separate campaign sections */
-const REGION_DIVIDER_AFTER = new Set<RegionId>([
-  "elendor",
-  "tul-assar-desert",
-  "na-qareth",
-]);
-
+/** Interactive map + mobile region chips (shared selection state). */
 export function WorldMap() {
   const locale = useLocale();
   const [hoveredId, setHoveredId] = useState<RegionId | null>(null);
@@ -33,8 +28,8 @@ export function WorldMap() {
   const activeId = hoveredId ?? focusedId;
 
   return (
-    <div className="mt-8">
-      <div className="overflow-hidden rounded-lg border border-amber-900/25 bg-zinc-900/40 shadow-[0_0_40px_rgba(180,83,9,0.06)]">
+    <>
+      <div className="relative z-10 overflow-hidden rounded-lg border border-amber-900/25 bg-zinc-900/20 shadow-[0_0_40px_rgba(180,83,9,0.06)]">
         <div className="relative aspect-[3584/4780] w-full">
           <Image
             src="/World_Map.png"
@@ -94,7 +89,7 @@ export function WorldMap() {
       </div>
 
       <nav
-        className="mt-6 lg:hidden"
+        className="relative z-10 mt-6 lg:hidden"
         aria-label={locale === "en" ? "Regions" : "Регионы"}
       >
         <p className="mb-3 text-xs font-medium uppercase tracking-[0.35em] text-amber-500/70">
@@ -118,24 +113,20 @@ export function WorldMap() {
           ))}
         </ul>
       </nav>
+    </>
+  );
+}
 
-      <div className="mt-14 border-t border-zinc-800/60 pt-14">
-        {REGIONS.map((region, index) => (
-          <div
-            key={region.id}
-            className={[
-              index > 0 ? "pt-16" : "",
-              REGION_DIVIDER_AFTER.has(region.id)
-                ? "border-b border-zinc-800/60 pb-16"
-                : "",
-            ]
-              .filter(Boolean)
-              .join(" ")}
-          >
-            <RegionArticle region={region} locale={locale} />
-          </div>
-        ))}
-      </div>
+export function WorldMapRegions() {
+  const locale = useLocale();
+
+  return (
+    <div className="mt-6 space-y-6">
+      {REGIONS.map((region) => (
+        <CampaignTextPanel key={region.id}>
+          <RegionArticle region={region} locale={locale} />
+        </CampaignTextPanel>
+      ))}
     </div>
   );
 }

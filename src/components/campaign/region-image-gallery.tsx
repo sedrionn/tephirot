@@ -1,32 +1,63 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 export type GalleryImage = {
   src: string;
   alt: string;
+  width?: number;
+  height?: number;
 };
+
+function isWideBannerImage(image: GalleryImage): boolean {
+  if (!image.width || !image.height) return false;
+  return image.width / image.height >= 2.2;
+}
+
+export { isWideBannerImage };
 
 type RegionThumbnailProps = {
   image: GalleryImage;
   onOpen: () => void;
+  overlay?: boolean;
 };
 
-export function RegionThumbnail({ image, onOpen }: RegionThumbnailProps) {
+export function RegionThumbnail({
+  image,
+  onOpen,
+  overlay = false,
+}: RegionThumbnailProps) {
+  const wide = overlay && isWideBannerImage(image);
+  const width = image.width ?? 560;
+  const height = image.height ?? 420;
+
   return (
     <button
       type="button"
       onClick={onOpen}
-      className="group relative aspect-[4/3] w-full overflow-hidden rounded-lg border border-amber-900/30 bg-zinc-900/80 transition-colors hover:border-amber-500/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/60"
+      className={
+        overlay
+          ? `group relative z-10 block w-full bg-transparent transition-opacity hover:opacity-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-700/50 ${
+              wide ? "max-w-full" : "mx-auto max-w-[280px]"
+            }`
+          : "group relative aspect-[4/3] w-full overflow-hidden rounded-lg border border-amber-900/30 bg-zinc-900/80 transition-colors hover:border-amber-500/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/60"
+      }
       aria-label={image.alt}
     >
       <Image
         src={image.src}
         alt={image.alt}
-        fill
-        className="object-cover transition-transform duration-200 group-hover:scale-105"
-        sizes="(max-width: 768px) 100vw, 280px"
+        width={overlay ? width : undefined}
+        height={overlay ? height : undefined}
+        fill={!overlay}
+        className={
+          overlay
+            ? "h-auto w-full object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,0.35)] transition-transform duration-200 group-hover:scale-[1.01]"
+            : "object-cover transition-transform duration-200 group-hover:scale-105"
+        }
+        sizes={wide ? "(max-width: 1024px) 100vw, 896px" : "(max-width: 768px) 100vw, 280px"}
       />
     </button>
   );
@@ -38,6 +69,12 @@ type ImageLightboxProps = {
 };
 
 export function ImageLightbox({ image, onClose }: ImageLightboxProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   useEffect(() => {
     if (!image) return;
 
@@ -57,11 +94,11 @@ export function ImageLightbox({ image, onClose }: ImageLightboxProps) {
     };
   }, [image, onClose]);
 
-  if (!image) return null;
+  if (!image || !mounted) return null;
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8"
+      className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-8"
       role="dialog"
       aria-modal="true"
       aria-label={image.alt}
@@ -85,13 +122,14 @@ export function ImageLightbox({ image, onClose }: ImageLightboxProps) {
           <Image
             src={image.src}
             alt={image.alt}
-            width={1920}
-            height={1080}
+            width={image.width ?? 1920}
+            height={image.height ?? 1080}
             className="mx-auto max-h-[calc(90vh-3rem)] w-auto object-contain"
             sizes="(max-width: 1024px) 100vw, 1024px"
           />
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

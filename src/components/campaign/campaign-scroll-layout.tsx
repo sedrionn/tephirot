@@ -3,13 +3,15 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { CampaignMobileNav } from "@/components/campaign/campaign-mobile-nav";
+import { CampaignTextPanel } from "@/components/campaign/campaign-text-panel";
 import {
   getActiveCampaignSectionId,
   scrollToCampaignTarget,
 } from "@/components/campaign/campaign-section-nav";
+import { FactionsSection } from "@/components/campaign/factions-section";
 import { OverviewSection } from "@/components/campaign/overview-section";
 import { PrefaceSection } from "@/components/campaign/preface-section";
-import { WorldMap } from "@/components/campaign/world-map";
+import { WorldMap, WorldMapRegions } from "@/components/campaign/world-map";
 
 const SECTIONS = [
   { id: "preface", titleKey: "preface" },
@@ -32,6 +34,9 @@ const SCROLL_SPY_SECTION_IDS = [
 ] as const;
 
 const SCROLL_END_DELAY_MS = 120;
+
+const CONTENT_PANEL_CLASS =
+  "rounded-xl border border-zinc-800/60 bg-zinc-950/75 shadow-[0_8px_32px_rgba(0,0,0,0.28)] backdrop-blur-sm";
 
 function scrollToSection(id: SectionId) {
   scrollToCampaignTarget(id);
@@ -112,7 +117,7 @@ export function CampaignScrollLayout() {
     return `relative block border-l-2 py-2.5 pl-5 pr-3 text-sm font-medium uppercase tracking-widest transition-colors ${
       isActive
         ? "border-amber-500 bg-amber-500/10 text-amber-400"
-        : "border-zinc-800 text-zinc-500 hover:border-amber-900/60 hover:text-amber-300/90"
+        : "border-zinc-700/80 text-zinc-400 hover:border-amber-900/60 hover:text-amber-300/90"
     }`;
   }
 
@@ -121,10 +126,10 @@ export function CampaignScrollLayout() {
       {/* Sidebar — desktop only; grid row stretches so inner nav can stick */}
       <aside className="hidden lg:block">
         <nav
-          className="sticky top-[100px]"
+          className={`sticky top-[100px] ${CONTENT_PANEL_CLASS} py-5`}
           aria-label="Campaign sections"
         >
-          <p className="mb-6 pl-5 text-xs font-medium uppercase tracking-[0.35em] text-amber-500/70">
+          <p className="mb-6 pl-5 text-xs font-medium uppercase tracking-[0.35em] text-amber-500/80">
             {t("sections.toc")}
           </p>
           <ul className="space-y-0.5">
@@ -155,7 +160,7 @@ export function CampaignScrollLayout() {
             })}
             <li>
               <span
-                className="block border-l-2 border-zinc-800 py-2.5 pl-5 pr-3 text-sm font-medium uppercase tracking-widest text-zinc-600"
+                className="block border-l-2 border-zinc-700/80 py-2.5 pl-5 pr-3 text-sm font-medium uppercase tracking-widest text-zinc-500"
                 title={t("sections.gmOnly")}
               >
                 <span aria-hidden>🔒 </span>
@@ -167,7 +172,7 @@ export function CampaignScrollLayout() {
       </aside>
 
       {/* Main content */}
-      <main className="min-w-0 py-16 sm:py-20 lg:pr-4">
+      <main className={`min-w-0 ${CONTENT_PANEL_CLASS} px-6 py-16 sm:px-8 sm:py-20`}>
         <header className="mb-8 border-b border-amber-900/25 pb-12 lg:mb-16">
           <p className="text-sm font-medium uppercase tracking-[0.35em] text-amber-500/80">
             {t("hub.eyebrow")}
@@ -175,7 +180,7 @@ export function CampaignScrollLayout() {
           <h1 className="mt-4 font-serif text-4xl font-semibold text-zinc-50 sm:text-5xl">
             {t("hub.title")}
           </h1>
-          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-zinc-400">
+          <p className="mt-4 text-lg leading-relaxed text-zinc-300">
             {t("hub.subtitle")}
           </p>
         </header>
@@ -192,22 +197,27 @@ export function CampaignScrollLayout() {
               <section
                 key={id}
                 id={id}
-                className="scroll-mt-[100px] border-b border-zinc-800/60 py-20 last:border-b-0"
+                className="scroll-mt-[100px] py-20"
               >
-                <h2 className="font-serif text-3xl font-semibold text-amber-100/90">
-                  {label}
-                </h2>
-                {id === "preface" ? (
-                  <PrefaceSection />
-                ) : id === "campaign-overview" ? (
-                  <OverviewSection />
-                ) : id === "world-map" ? (
-                  <WorldMap />
-                ) : (
-                  <p className="mt-6 max-w-3xl leading-relaxed text-zinc-400">
-                    {t("placeholder", { section: label })}
-                  </p>
-                )}
+                <CampaignTextPanel>
+                  <h2 className="relative z-10 mb-8 font-serif text-3xl font-semibold text-amber-100/90">
+                    {label}
+                  </h2>
+                  {id === "preface" ? (
+                    <PrefaceSection />
+                  ) : id === "campaign-overview" ? (
+                    <OverviewSection />
+                  ) : id === "world-map" ? (
+                    <WorldMap />
+                  ) : id === "factions" ? (
+                    <FactionsSection />
+                  ) : (
+                    <p className="relative z-10 leading-relaxed text-zinc-300">
+                      {t("placeholder", { section: label })}
+                    </p>
+                  )}
+                </CampaignTextPanel>
+                {id === "world-map" ? <WorldMapRegions /> : null}
               </section>
             );
           })}
@@ -217,13 +227,15 @@ export function CampaignScrollLayout() {
             className="scroll-mt-[100px] py-20"
             aria-label={t(`sections.${LOCKED_SECTION.titleKey}`)}
           >
-            <h2 className="flex items-center gap-3 font-serif text-3xl font-semibold text-zinc-600">
-              <span aria-hidden>🔒</span>
-              {t(`sections.${LOCKED_SECTION.titleKey}`)}
-            </h2>
-            <p className="mt-6 max-w-3xl leading-relaxed text-zinc-600">
-              {t("gmLocked")}
-            </p>
+            <CampaignTextPanel>
+              <h2 className="relative z-10 mb-8 flex items-center gap-3 font-serif text-3xl font-semibold text-zinc-500">
+                <span aria-hidden>🔒</span>
+                {t(`sections.${LOCKED_SECTION.titleKey}`)}
+              </h2>
+              <p className="relative z-10 leading-relaxed text-zinc-500">
+                {t("gmLocked")}
+              </p>
+            </CampaignTextPanel>
           </section>
         </div>
       </main>

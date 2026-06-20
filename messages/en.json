@@ -72,6 +72,67 @@
         "And now, two centuries later, the desert begins to return what it once swallowed.",
         "The storms weaken, and the sands gradually reveal their secrets. Forgotten cities, buried temples, and ruins of the ancient Technocracy rise from beneath the dunes. With them return lost knowledge, untold treasures, and secrets that perhaps should have stayed buried forever."
       ]
+    },
+    "factions": {
+      "entries": [
+        {
+          "id": "al-shaar",
+          "name": "Al-Shaar",
+          "paragraphs": [
+            "Al-Shaar is the largest trading organization in the south and the chief economic engine of the Sultanate. Nearly every elite house of Tul'Assar is tied to Al-Shaar in one way or another. Its members keep trade flowing between the cities of Tul'Assar, broker international agreements, organize caravans, and keep the markets running.",
+            "For most people, Al-Shaar is a symbol of prosperity and stability."
+          ]
+        },
+        {
+          "id": "ashalari",
+          "name": "As'halari (Sun Guard)",
+          "paragraphs": [
+            "The As'halari are the standing army and city watch of the Sultanate. They defend the cities, patrol the roads, escort caravans, and guard the borders.",
+            "Unlike the legions of Daskal, the As'halari specialize in operations across the deserts and ruins of the ancient world. Many of their officers are also seasoned scouts, guides, and monster hunters."
+          ]
+        },
+        {
+          "id": "jarhani",
+          "name": "Jarhani (Desert Fangs)",
+          "paragraphs": [
+            "The Jarhani are the Sultanate's secret service, answering directly to the Sultan.",
+            "They handle intelligence, counterintelligence, diplomatic operations, and the protection of the state's interests."
+          ]
+        },
+        {
+          "id": "caer-andros-college",
+          "name": "Caer Andros — College of Knowledge",
+          "paragraphs": [
+            "The College of Knowledge of Caer Andros is an organization governed by a council of academicians, engineers, and researchers. It is one of the world's foremost scientific centers and the main source of technological progress since the Cataclysm.",
+            "Most ancient ruins, artifacts, and technologies eventually find their way into the hands of Caer Andros—unless the Order of Merciful Flame seizes them first."
+          ]
+        },
+        {
+          "id": "order-of-merciful-flame",
+          "name": "Order of Merciful Flame",
+          "paragraphs": [
+            "The Order of Merciful Flame is Daskal's largest humanitarian and peacekeeping organization. Its knights, healers, engineers, and volunteers operate far beyond the borders of the Daskal Empire, bringing aid to regions stricken by war, monsters, famine, and the aftermath of the Great Cataclysm."
+          ]
+        },
+        {
+          "id": "church-of-ascension",
+          "name": "Church of the Prophets of Ascension",
+          "paragraphs": [
+            "The Church of the Prophets of Ascension is a small religious organization based on the fringes of Veldemar. Its followers claim their order existed long before the Great Cataclysm and stood close to a state of Ascension said to be able to reshape the fate of the world.",
+            "The Prophets believe most of their predecessors' knowledge was lost during the Cataclysm and now lies buried in the ruins of Tul'Assar, entombed beneath the desert sands.",
+            "For this reason the order regularly sends pilgrims, scholars, and expeditions in search of ancient artifacts, texts, and places of power."
+          ]
+        },
+        {
+          "id": "hobgoblin-legion",
+          "name": "Hobgoblin Legion",
+          "paragraphs": [
+            "The Hobgoblin Legion is a mysterious military force that appeared in the deserts of Tul'Assar relatively recently. No one knows for certain where they came from or who commands them, but over the past few years their influence has grown markedly.",
+            "At the heart of the Legion lies a vast nomadic city that moves continuously through the desert. Some say it is pulled by monsters, others that it is dragged by slaves, and still others insist the city moves entirely on its own.",
+            "Legion warbands regularly raid small settlements, caravans, and border outposts."
+          ]
+        }
+      ]
     }
   }
 }

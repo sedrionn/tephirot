@@ -69,24 +69,29 @@ const particleOptions: ISourceOptions = {
   },
 };
 
-function HeroParticlesCanvas() {
+function HeroParticlesCanvas({ id }: { id: string }) {
   return (
     <Particles
-      id="hero-embers"
+      id={id}
       className="absolute inset-0 h-full w-full"
       options={particleOptions}
     />
   );
 }
 
-export function HeroParticles() {
+type HeroParticlesProps = {
+  className?: string;
+  id?: string;
+};
+
+export function HeroParticles({
+  className = "pointer-events-none absolute inset-0 z-[1] min-h-svh h-full w-full",
+  id = "hero-embers",
+}: HeroParticlesProps = {}) {
   return (
-    <div
-      className="pointer-events-none absolute inset-0 z-[1] min-h-svh h-full w-full"
-      aria-hidden
-    >
+    <div className={className} aria-hidden>
       <ParticlesProvider init={loadSlim}>
-        <HeroParticlesCanvas />
+        <HeroParticlesCanvas id={id} />
       </ParticlesProvider>
     </div>
   );

@@ -8,8 +8,8 @@ export function PrefaceSection() {
   const paragraphs = t.raw("paragraphs") as string[];
 
   return (
-    <div className="mt-8">
-      <figure className="overflow-hidden rounded-lg border border-amber-900/25 shadow-[0_0_40px_rgba(180,83,9,0.06)]">
+    <>
+      <figure className="relative z-10 overflow-hidden rounded-lg border border-amber-900/25 shadow-[0_0_40px_rgba(180,83,9,0.06)]">
         <Image
           src="/Dessert_moodpick.png"
           alt={t("imageAlt")}
@@ -19,11 +19,11 @@ export function PrefaceSection() {
           sizes="(max-width: 896px) 100vw, 896px"
         />
       </figure>
-      <div className="mt-10 max-w-3xl space-y-6 leading-relaxed text-zinc-400">
+      <div className="relative z-10 mt-10 space-y-6 leading-relaxed text-zinc-300">
         {paragraphs.map((paragraph, index) => (
           <p key={index}>{paragraph}</p>
         ))}
       </div>
-    </div>
+    </>
   );
 }

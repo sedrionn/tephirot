@@ -28,6 +28,9 @@ export type RegionImage = {
   altEn: string;
   /** "start" for the opening section, or a section anchorId. */
   placement: string;
+  /** Source pixel size — keeps preview aspect ratio correct. */
+  width?: number;
+  height?: number;
 };
 
 export type Region = {
@@ -78,9 +81,33 @@ export const REGIONS: Region[] = [
       },
     ],
     descriptionRu:
-      "Тул'Ассар — некогда великое царство людей, прекрасный оазис с развитой магией и экономикой. Во время Элендорской Катастрофы оно было почти полностью уничтожено. Смерчи, землетресения, невиданные доселе песчаные бури утопили большую часть городов в песках. Те, кому удалось выжить, бежали на север в земли Даскала либо на запад в На'Кхарет.\n\nОколо пятидесяти лет назад природные катаклизмы стихли достаточно, чтобы вновь началось заселение пустыни, но оно идёт довольно медленно и в основном лишь с северной части. Дюны похоронили много богатств.",
+      "Тул'Ассар — некогда великое царство людей, прекрасный оазис с развитой магией и экономикой.",
     descriptionEn:
-      "Tul'Assar was once a great human realm—a splendid oasis with advanced magic and a thriving economy. During the Elendor Catastrophe it was nearly wiped out entirely. Dust devils, earthquakes, and sandstorms unlike any seen before buried most of its cities beneath the dunes. Those who survived fled north to the lands of Daskal or west to Na'Khareth.\n\nSome fifty years ago the natural calamities subsided enough for resettlement of the desert to begin again, but progress is slow and comes mainly from the northern reaches. The dunes have entombed vast wealth.",
+      "Tul'Assar was once a great human realm—a splendid oasis with advanced magic and a thriving economy.",
+    sectionsRu: [
+      {
+        paragraphs: [
+          "Тул'Ассар — некогда великое царство людей, прекрасный оазис с развитой магией и экономикой. Во время Элендорской Катастрофы оно было почти полностью уничтожено. Смерчи, землетресения, невиданные доселе песчаные бури утопили большую часть городов в песках. Те, кому удалось выжить, бежали на север в земли Даскала либо на запад в На'Кхарет.",
+        ],
+      },
+      {
+        paragraphs: [
+          "Около пятидесяти лет назад природные катаклизмы стихли достаточно, чтобы вновь началось заселение пустыни, но оно идёт довольно медленно и в основном лишь с северной части. Дюны похоронили много богатств.",
+        ],
+      },
+    ],
+    sectionsEn: [
+      {
+        paragraphs: [
+          "Tul'Assar was once a great human realm—a splendid oasis with advanced magic and a thriving economy. During the Elendor Catastrophe it was nearly wiped out entirely. Dust devils, earthquakes, and sandstorms unlike any seen before buried most of its cities beneath the dunes. Those who survived fled north to the lands of Daskal or west to Na'Khareth.",
+        ],
+      },
+      {
+        paragraphs: [
+          "Some fifty years ago the natural calamities subsided enough for resettlement of the desert to begin again, but progress is slow and comes mainly from the northern reaches. The dunes have entombed vast wealth.",
+        ],
+      },
+    ],
     pathD:
       "M2037,2611l118,147,8,152,3,137s-51.32,77.82-38,101,33,42,33,42l-163,35-151-98s-233.83-.12-239-1-423,23-423,23L995,3268,547,3167l374-63,249-123,32-195-53-127,81-158Z",
   },
@@ -201,6 +228,10 @@ export const REGIONS: Region[] = [
         anchorId: "daskal-relations",
         paragraphs: [
           "Отношения с Империей строятся на деликатном и опасном балансе. Велдемар исправно платит дань провиантом и сырьем, за счет чего откупается от жесткого имперского контроля.",
+        ],
+      },
+      {
+        paragraphs: [
           "Главный секрет герцогства — скрытное использование «мягкой» природной магии: бытовых чар, знахарства и заговоров на урожай. Она не является повсеместной, но распространена во многих общинах, особенно отдаленных от крупных городов. Местное население лояльно к практикующим друидам и покрывает их от ищеек Империи. Герцог вынужден публично демонстрировать Даскалу полную покорность, но тайно саботирует любые попытки имперских инквизиторов устроить охоту на приверженцев старой веры на его землях.",
         ],
       },
@@ -262,6 +293,10 @@ export const REGIONS: Region[] = [
         anchorId: "daskal-relations",
         paragraphs: [
           "Relations with the Empire rest on a delicate and dangerous balance. Veldemar pays its tribute faithfully in provisions and raw materials, buying relief from harsh imperial oversight.",
+        ],
+      },
+      {
+        paragraphs: [
           "The duchy's great secret is the hidden use of \"soft\" natural magic—household charms, folk healing, and crop blessings. It is not universal, but common in many communities, especially those far from the great towns. The common folk are loyal to practicing druids and shield them from imperial hunters. The duke must publicly show Daskal complete obedience, yet secretly sabotages any attempt by imperial inquisitors to hunt followers of the old faith on his lands.",
         ],
       },
@@ -305,10 +340,162 @@ export const REGIONS: Region[] = [
     svgPathId: "Avenhold",
     nameRu: "Авенхольд",
     nameEn: "Avenhold",
+    images: [
+      {
+        src: "/Avenhold1.png",
+        altRu: "Авенхолд",
+        altEn: "Avenhold",
+        placement: "start",
+      },
+    ],
     descriptionRu:
-      "Авенхольд — крепости и мосты над реками, оплот торговли в сердце континента.",
+      "Авенхолд — бескрайнее королевство высоких степей, ветров и бесконечных горизонтов.",
     descriptionEn:
-      "Avenhold's fortresses and river bridges stand as a bastion of trade in the continent's heart.",
+      "Avenhold is a boundless realm of high steppes, wind, and endless horizons.",
+    sectionsRu: [
+      {
+        paragraphs: [
+          "«Всадник может пережить поражение. Может пережить голод. Может пережить смерть своего короля. Но он не должен пережить позор служения врагу.»",
+          "— старая авенхолдская поговорка.",
+        ],
+      },
+      {
+        paragraphs: [
+          "Авенхолд — бескрайнее королевство высоких степей, ветров и бесконечных горизонтов. Его жители веками жили верхом, а местная знать скорее напоминает кочевые рыцарские кланы, чем оседлых аристократов.",
+          "Во всём Тэфироте нет кавалерии опаснее авенхолдской. Их всадники способны неделями жить в седле, пересекать половину страны без обозов и исчезать в высокой траве прежде, чем противник поймёт, что попал в ловушку.",
+          "Сегодня Авенхолд остаётся формально самостоятельным королевством, но фактически является вассалом Империи Даскал.",
+          "Король сидит на троне.",
+          "Лорды правят своими землями.",
+          "Законы Авенхолда продолжают действовать.",
+          "Но все понимают, что настоящая свобода была потеряна много поколений назад.",
+        ],
+      },
+      {
+        heading: "Милосердие, ставшее проклятием",
+        paragraphs: [
+          "После Великого Катаклизма Авенхолд открыл границы для беженцев.",
+          "Среди них были:",
+          "Для жителей равнин это казалось правильным решением.",
+          "Для Октавиана Даска это выглядело как создание нового очага угрозы.",
+          "Когда Даскал начал войну против магов, Авенхолд отказался выдавать беженцев.",
+          "Так началась война, навсегда изменившая судьбу королевства.",
+        ],
+        bullets: [
+          "учёные и маги Тул'Ассара;",
+          "выжившие эльфы Элендора;",
+          "тысячи обычных переселенцев.",
+        ],
+        bulletsAfter: 1,
+      },
+      {
+        heading: "Битва у Башни Лаконии",
+        paragraphs: [
+          "Главным символом сопротивления Авенхолда стала Битва у Башни Лаконии.",
+          "В тот день тяжёлые легионы Даскала столкнулись с союзом тул'ассарских магов и авенхолдской лёгкой конницы.",
+          "Пока всадники изматывали легионеров ложными атаками и притворными отступлениями, маги превращали построения Даскала в пылающие руины.",
+          "Империя потерпела одно из самых тяжёлых поражений в своей истории.",
+          "Даже спустя два столетия офицеры Даскала изучают это сражение как пример того, насколько опасным может быть союз магии и мобильной армии.",
+        ],
+      },
+      {
+        heading: "Мир на Бумаге",
+        paragraphs: [
+          "Несмотря на победу при Лаконии, Авенхолд не смог выиграть войну.",
+          "Даскал отказался сражаться на условиях противника.",
+          "Вместо новых генеральных битв Империя начала душить королевство экономически.",
+          "Перекрывались торговые маршруты.",
+          "Блокировались города.",
+          "Уничтожались склады.",
+          "Год за годом ресурсы Авенхолда истощались.",
+          "В конце концов был заключён договор, который жители равнин до сих пор называют «Миром на Бумаге».",
+          "Согласно ему:",
+        ],
+        bullets: [
+          "Авенхолд сохранял собственную корону и внутреннее самоуправление.",
+          "Империя не размещала постоянные гарнизоны на территории королевства.",
+          "Авенхолд поставлял коней и элитную кавалерию для нужд Даскала.",
+          "Любая магическая деятельность объявлялась вне закона.",
+        ],
+        bulletsAfter: 8,
+      },
+      {
+        paragraphs: [
+          "Так Даскал уничтожил союз конницы и магии, не уничтожая сам Авенхолд.",
+        ],
+      },
+    ],
+    sectionsEn: [
+      {
+        paragraphs: [
+          "\"A rider can survive defeat. He can survive hunger. He can survive the death of his king. But he must not survive the shame of serving the enemy.\"",
+          "— an old Avenhold proverb.",
+        ],
+      },
+      {
+        paragraphs: [
+          "Avenhold is a boundless realm of high steppes, wind, and endless horizons. Its people have lived in the saddle for centuries, and the local nobility resembles roaming knightly clans more than settled aristocrats.",
+          "Nowhere in Tephirot is cavalry more dangerous than Avenhold's. Its riders can live in the saddle for weeks, cross half the country without baggage trains, and vanish into the tall grass before the enemy realizes they have walked into a trap.",
+          "Today Avenhold remains formally an independent kingdom, yet in practice it is a vassal of the Daskal Empire.",
+          "The king sits the throne.",
+          "Lords rule their lands.",
+          "Avenhold's laws still hold.",
+          "Yet all understand that true freedom was lost many generations ago.",
+        ],
+      },
+      {
+        heading: "Mercy that became a curse",
+        paragraphs: [
+          "After the Great Cataclysm Avenhold opened its borders to refugees.",
+          "Among them were:",
+          "To the people of the plains it seemed the right choice.",
+          "To Octavian Dask it looked like breeding a new threat.",
+          "When Daskal began its war against mages, Avenhold refused to surrender the refugees.",
+          "Thus began a war that forever changed the kingdom's fate.",
+        ],
+        bullets: [
+          "scholars and mages from Tul'Assar;",
+          "surviving elves of Elendor;",
+          "thousands of ordinary settlers.",
+        ],
+        bulletsAfter: 1,
+      },
+      {
+        heading: "The Battle of Laconia Tower",
+        paragraphs: [
+          "The great symbol of Avenhold's resistance was the Battle of Laconia Tower.",
+          "That day Daskal's heavy legions faced an alliance of Tul'Assar mages and Avenhold's light cavalry.",
+          "While riders wore down the legionaries with feints and false retreats, mages turned Daskal's formations into burning ruins.",
+          "The Empire suffered one of the heaviest defeats in its history.",
+          "Even two centuries later Daskal officers study the battle as proof of how deadly an alliance of magic and a mobile army can be.",
+        ],
+      },
+      {
+        heading: "Peace on Paper",
+        paragraphs: [
+          "Despite victory at Laconia, Avenhold could not win the war.",
+          "Daskal refused to fight on the enemy's terms.",
+          "Instead of new pitched battles the Empire strangled the kingdom economically.",
+          "Trade routes were cut.",
+          "Cities were blockaded.",
+          "Storehouses were destroyed.",
+          "Year by year Avenhold's resources bled away.",
+          "At last a treaty was signed that the people of the plains still call the \"Peace on Paper.\"",
+          "Under it:",
+        ],
+        bullets: [
+          "Avenhold kept its crown and internal self-rule.",
+          "The Empire placed no permanent garrisons on the kingdom's soil.",
+          "Avenhold supplied horses and elite cavalry for Daskal's needs.",
+          "All magical activity was outlawed.",
+        ],
+        bulletsAfter: 8,
+      },
+      {
+        paragraphs: [
+          "Thus Daskal broke the alliance of cavalry and magic without destroying Avenhold itself.",
+        ],
+      },
+    ],
     pathD:
       "M1759,2122l-102,47-180-32-68,37,152,169-126,128,21,52,569,87-57-103,19-112-143-175Z",
   },
@@ -317,10 +504,102 @@ export const REGIONS: Region[] = [
     svgPathId: "Daskal",
     nameRu: "Даскал",
     nameEn: "Daskal",
+    images: [
+      {
+        src: "/Daskal1.png",
+        altRu: "Империя Даскал",
+        altEn: "Daskal Empire",
+        placement: "start",
+      },
+    ],
     descriptionRu:
-      "Горные кланы Даскала хранят древние клятвы и рудники, питающие войны низин.",
+      "Империя Даскал — крупнейшая, самая дисциплинированная и технологически развитая держава Тэфирота.",
     descriptionEn:
-      "Daskal's mountain clans keep ancient oaths and mines that fuel the lowlands' wars.",
+      "The Daskal Empire is the largest, most disciplined, and most technologically advanced realm in Tephirot.",
+    sectionsRu: [
+      {
+        paragraphs: [
+          "«Они называют нас жестокими. Но посмотрите на Элендор — зияющую рану на теле мира, оставленную гордыней магов. Если цена за то, чтобы небеса больше не рвались на части, — это строгий закон и пепел на губах наших паладинов, мы будем платить её с гордостью.» — из трактата «Необходимое Решение».",
+        ],
+      },
+      {
+        paragraphs: [
+          "Империя Даскал — крупнейшая, самая дисциплинированная и технологически развитая держава Тэфирота. Для внешних врагов и мятежников это безжалостная военная машина. Но для своих граждан Даскал — сияющий маяк цивилизации, щит, укрывший человечество от полного уничтожения. Это города с идеальными акведуками, безопасными дорогами, строгими, но справедливыми судами и монументальной белокаменной архитектурой с рыжеватыми прожилками.",
+        ],
+      },
+      {
+        heading: "История: наследие Октавиана Даска",
+        paragraphs: [
+          "Государство в его нынешнем виде было выковано в огне Великого Катаклизма. Когда мир рушился, а небеса почернели, именно полководец Октавиан Даск смог навести порядок в хаосе.",
+          "Он открыто обвинил магов в гибели мира. Заключив стратегический союз с учёными из Кэр Андроса — единственными союзниками Даскала в те тёмные времена, — Октавиан получил технологическое преимущество.",
+          "Объединённые силы Даскала и Кэр Андроса совершили невозможное: они разбили могущественную конницу и чародеев Авенхолда, захватив равнины, а затем подчинили лесное герцогство Велдемар. Так Октавиан сковал Империю, которая стоит до сих пор.",
+        ],
+      },
+      {
+        heading: "Эфирит (Аскалонский камень): благородная жертва",
+        paragraphs: [
+          "Основа военной мощи Даскала — эфирит, минерал, нейтрализующий и впитывающий прану. Оружие и щиты из эфирита позволяют обычным людям, не имеющим дара, противостоять архимагам и чудовищам.",
+          "Но защита имеет цену: эфирит высасывает жизненную силу самого носителя. Элитные инквизиторы Даскала седеют к тридцати годам, их кожа бледнеет, а тела истощаются. В Империи это не скрывают — это называется «благородным увяданием». Солдаты, отдающие своё здоровье эфириту, считаются величайшими героями нации, жертвующими собой ради того, чтобы обычные граждане спали спокойно.",
+        ],
+      },
+      {
+        heading: "Внешняя политика: вассалы, враги и союзники",
+        paragraphs: [
+          "Империя несёт на себе колоссальный груз ответственности за континент, и её дипломатия строится на силе, прагматизме и идеологии выживания.",
+        ],
+        bullets: [
+          "Авенхолд: вассал, покорённый Октавианом Даском. Поставляет Империи элитную кавалерию. Даскал жестоко подавляет там любые магические культы, из-за чего местные считают имперцев оккупантами.",
+          "Велдемар: вассал. Поставляет провизию и дерево. Даскал позволяет им внутреннюю автономию — легионы не умеют воевать в густых лесах, а Империя умрёт от голода без велдемарского зерна.",
+          "Тул'Ассар: для граждан — проклятая пустошь, памятник гордыне магов; для элиты — ресурсная база. Империя, часто руками Ордена Милосердного Пламени, контролирует там раскопки, чтобы изымать запретные техномагические артефакты и не давать им попасть в руки мятежников.",
+          "Шайлаан: в прошлом Даскал вёл с ними кровопролитные войны. Сейчас прямое столкновение невозможно — горные хребты, воздвигнутые Сошедшим Кетиром, наглухо отрезали Шайлаан от мира. Контактов нет, но в Даскале к ним относятся с жгучим презрением, считая трусами, которые отгородились каменной стеной, бросив остальное человечество.",
+          "Северные королевства: дикий фронтир и рассадник ереси. На севере всё ещё процветают культы и вольные поселения, открыто практикующие колдовство. Империя периодически отправляет туда карательные легионы, чтобы выжигать магическую заразу и не давать северянам объединиться.",
+          "Гортмар: прагматичный и крайне ценный союзник. Дварфы предпочитают надёжный металл нестабильной магии, что идеологически полностью устраивает Даскал. Гортмар снабжает имперские легионы сталью, инструментами и сложными механизмами, получая взамен продовольствие и охрану торговых караванов.",
+        ],
+        bulletsAfter: 0,
+      },
+    ],
+    sectionsEn: [
+      {
+        paragraphs: [
+          "\"They call us cruel. But look at Elendor—a gaping wound upon the world, left by the pride of mages. If the price that the heavens never tear apart again is strict law and ash upon our paladins' lips, we will pay it with pride.\" — from the treatise \"The Necessary Resolution\".",
+        ],
+      },
+      {
+        paragraphs: [
+          "The Daskal Empire is the largest, most disciplined, and most technologically advanced realm in Tephirot. To foreign enemies and rebels it is a ruthless war machine. To its own citizens Daskal is a shining beacon of civilization, the shield that saved humanity from annihilation—cities with perfect aqueducts, safe roads, strict but fair courts, and monumental white-stone architecture threaded with reddish veins.",
+        ],
+      },
+      {
+        heading: "History: the legacy of Octavian Dask",
+        paragraphs: [
+          "The state as it exists today was forged in the fires of the Great Cataclysm. When the world collapsed and the skies turned black, it was the commander Octavian Dask who restored order from chaos.",
+          "He openly blamed mages for the world's ruin. By forging a strategic alliance with the scholars of Caer Andros—Daskal's only allies in those dark years—Octavian gained a technological edge.",
+          "United Daskal and Caer Andros achieved the impossible: they shattered the mighty cavalry and sorcerers of Avenhold, seized the plains, then subjugated the forest duchy of Veldemar. Thus Octavian bound the Empire that endures to this day.",
+        ],
+      },
+      {
+        heading: "Etherite (Ascalon stone): a noble sacrifice",
+        paragraphs: [
+          "The foundation of Daskal's military power is etherite, a mineral that neutralizes and absorbs prana. Weapons and shields of etherite let ordinary people without the gift stand against archmages and monsters.",
+          "But protection has a price: etherite drains the bearer's life force. Elite inquisitors of Daskal turn grey before thirty; their skin pales and their bodies waste away. The Empire does not hide this—it is called the \"noble withering.\" Soldiers who give their health to etherite are hailed as the nation's greatest heroes, sacrificing themselves so ordinary citizens may sleep in peace.",
+        ],
+      },
+      {
+        heading: "Foreign policy: vassals, enemies, and allies",
+        paragraphs: [
+          "The Empire bears a colossal burden of responsibility for the continent; its diplomacy rests on strength, pragmatism, and the ideology of survival.",
+        ],
+        bullets: [
+          "Avenhold: a vassal conquered by Octavian Dask. Supplies elite cavalry to the Empire. Daskal brutally crushes magical cults there, so locals see imperial troops as occupiers.",
+          "Veldemar: a vassal. Supplies provisions and timber. Daskal grants broad internal autonomy—legions cannot fight well in deep woods, and the Empire would starve without Veldemar's grain.",
+          "Tul'Assar: to common citizens, a cursed wasteland and monument to mages' pride; to the elite, a resource base. The Empire, often through the Order of Merciful Flame, controls excavations to seize forbidden technomantic artifacts and keep them from rebels.",
+          "Shaylaan: Daskal once waged bloody wars against them. Direct conflict is impossible now—the mountain ranges raised by the Descended Ketir cut Shaylaan off from the world. There is no contact, yet Daskal despises them as cowards who walled themselves away and abandoned the rest of humanity.",
+          "Northern Kingdoms: wild frontier and hotbed of heresy. Cults and free settlements still flourish in the north, openly practicing sorcery. The Empire periodically sends punitive legions on crusades to burn out magical contagion and prevent the northerners from uniting.",
+          "Gorthamar: a pragmatic and invaluable ally. Dwarves prefer reliable metal to unstable magic—a perfect ideological match for Daskal. Gorthamar steadily supplies imperial legions with steel, tools, and intricate mechanisms, receiving food and caravan protection in return.",
+        ],
+        bulletsAfter: 0,
+      },
+    ],
     pathD:
       "M1330,1696l97-60,112-54,52,151,79,153,77,186-49,49-41,37-182-33-78,46-185-71-68-148-87,15-73-82-66-250L726,1389l236-38,161-11,74,4-27,213,66,168Z",
   },
@@ -329,10 +608,64 @@ export const REGIONS: Region[] = [
     svgPathId: "Caer_Andros",
     nameRu: "Кэр Андрос",
     nameEn: "Caer Andros",
+    images: [
+      {
+        src: "/CaerAndros1.png",
+        altRu: "Кэр Андрос",
+        altEn: "Caer Andros",
+        placement: "start",
+      },
+    ],
     descriptionRu:
-      "Северная цитадель Кэр Андрос смотрит в море туманов и ледяных ветров.",
+      "Кэр Андрос — независимая республика учёных, инженеров, архивариусов и исследователей на севере от Даскала.",
     descriptionEn:
-      "The northern citadel of Caer Andros watches over a sea of mist and ice winds.",
+      "Caer Andros is an independent republic of scholars, engineers, archivists, and researchers north of Daskal.",
+    sectionsRu: [
+      {
+        paragraphs: [
+          "Кэр Андрос — независимая республика учёных, инженеров, архивариусов и исследователей, расположенная на севере от Даскала. Несмотря на сравнительно небольшую территорию, влияние республики ощущается по всему континенту.",
+        ],
+      },
+      {
+        paragraphs: [
+          "Если Даскал контролирует армии, а Гортмар — промышленность, то Кэр Андрос контролирует знания.",
+          "Большинство карт древних руин, описаний артефактов и сведений о погибших цивилизациях проходит через руки его архивариусов.",
+          "Многие государства считают Кэр Андрос незаменимым союзником. Не меньшее число считает его самой опасной страной мира.",
+        ],
+      },
+      {
+        heading: "Наследники катастрофы",
+        paragraphs: [
+          "Во времена Великого Катаклизма Кэр Андрос оказался одним из немногих государств, сохранивших относительную стабильность.",
+          "Пока другие народы пытались выжить, учёные республики занимались сбором знаний погибающего мира.",
+          "Именно тогда будущий император Октавиан Даск заключил союз с Кэр Андросом.",
+          "Республика предоставила инженеров, снабжение и научные разработки.",
+        ],
+      },
+    ],
+    sectionsEn: [
+      {
+        paragraphs: [
+          "Caer Andros is an independent republic of scholars, engineers, archivists, and researchers, lying north of Daskal. Despite its relatively small territory, the republic's influence is felt across the continent.",
+        ],
+      },
+      {
+        paragraphs: [
+          "If Daskal controls armies and Gorthamar controls industry, then Caer Andros controls knowledge.",
+          "Most maps of ancient ruins, descriptions of artifacts, and records of fallen civilizations pass through the hands of its archivists.",
+          "Many realms call Caer Andros an indispensable ally. No fewer call it the most dangerous country in the world.",
+        ],
+      },
+      {
+        heading: "Heirs of the catastrophe",
+        paragraphs: [
+          "During the Great Cataclysm Caer Andros was one of the few states to keep relative stability.",
+          "While other peoples struggled merely to survive, the republic's scholars gathered the knowledge of a dying world.",
+          "It was then that the future emperor Octavian Dask forged an alliance with Caer Andros.",
+          "The republic supplied engineers, provisions, and scientific breakthroughs.",
+        ],
+      },
+    ],
     pathD:
       "M1155,1020l161-46,146,41,181,32,74,54-78,156-86,226-13,104-204,118-91,23-57-187,27-197,8-145-85-72Z",
   },
@@ -341,34 +674,270 @@ export const REGIONS: Region[] = [
     svgPathId: "Northen_Kingsdoms",
     nameRu: "Северные королевства",
     nameEn: "Northern Kingdoms",
+    images: [
+      {
+        src: "/NorthernKingdoms1.png",
+        altRu: "Северные королевства",
+        altEn: "Northern Kingdoms",
+        placement: "start",
+      },
+    ],
     descriptionRu:
-      "Союз северных коронелей — политика, интриги и сталь на границе с дикими землями.",
+      "Северные королевства — обширный регион за пределами влияния Даскала, пёстрое собрание десятков княжеств и городов-государств.",
     descriptionEn:
-      "The union of northern crowns — politics, intrigue, and steel on the edge of the wilds.",
+      "The Northern Kingdoms are a vast region beyond Daskal's reach—a patchwork of dozens of principalities and city-states.",
+    sectionsRu: [
+      {
+        paragraphs: [
+          "«На юге человек принадлежит королю. В Даскале — Империи. На Севере человек принадлежит только себе.»",
+        ],
+      },
+      {
+        paragraphs: [
+          "Северные королевства — обширный регион за пределами влияния Даскала. Несмотря на название, это не единое государство, а пёстрое собрание десятков княжеств, городов-государств, племенных союзов, торговых республик и небольших королевств, постоянно заключающих союзы и воюющих друг с другом.",
+          "Здесь нет единого правителя, нет общей армии, нет общей религии — именно поэтому Север никогда не удавалось покорить окончательно.",
+          "Для жителей Империи это дикий фронтир. Для северян — последний уголок мира, где человек ещё может жить без надзора Даскала.",
+        ],
+      },
+      {
+        heading: "Земля тысячи знамён",
+        paragraphs: [
+          "Север невероятно разнообразен. На побережьях расположены богатые торговые города, живущие за счёт рыболовства и морской торговли. В глубоких лесах скрываются княжества охотников и лесорубов. Среди гор существуют небольшие крепостные государства, контролирующие перевалы и рудники. А на далёких северных островах сохранились полукочевые народы мореходов.",
+          "Некоторые государства существуют веками. Другие исчезают за одно поколение. На карте Север выглядит как лоскутное одеяло из десятков постоянно меняющихся границ.",
+        ],
+      },
+    ],
+    sectionsEn: [
+      {
+        paragraphs: [
+          "\"In the south a man belongs to his king. In Daskal—to the Empire. In the North a man belongs only to himself.\"",
+        ],
+      },
+      {
+        paragraphs: [
+          "The Northern Kingdoms are a vast region beyond Daskal's influence. Despite the name, this is not one realm but a motley collection of dozens of principalities, city-states, tribal leagues, merchant republics, and small kingdoms—forever making alliances and waging war on one another.",
+          "There is no single ruler, no common army, no shared faith—and that is precisely why the North has never been conquered for good.",
+          "To imperial citizens it is the wild frontier. To northerners it is the last corner of the world where a person can still live without Daskal's oversight.",
+        ],
+      },
+      {
+        heading: "The land of a thousand banners",
+        paragraphs: [
+          "The North is staggeringly diverse. Rich trading cities line the coasts, living on fishing and sea trade. Deep in the forests lie principalities of hunters and woodcutters. Among the mountains stand small fortress-states that control passes and mines. On distant northern isles semi-nomadic seafaring peoples endure.",
+          "Some realms last for centuries. Others vanish within a generation. On the map the North looks like a patchwork quilt of dozens of ever-shifting borders.",
+        ],
+      },
+    ],
     pathD:
       "M1148,1004.46l-76-229,99-115,165,11,181-21,188,20,130-64,276,64-2,48-163,62-83,121-115,102-32,94-75-53-252-46-196,1Z",
   },
   {
     id: "gorthamar",
     svgPathId: "Gorthamar",
-    nameRu: "Гортамар",
+    nameRu: "Гортмар",
     nameEn: "Gorthamar",
+    images: [
+      {
+        src: "/Gorthamar1.png",
+        altRu: "Гортмар",
+        altEn: "Gorthamar",
+        placement: "start",
+      },
+    ],
     descriptionRu:
-      "Гортамар — суровые высокогорья, где ордена и отшельники хранят забытые знания.",
+      "Гортмар — величайшее государство дварфов и крупнейший промышленный центр мира.",
     descriptionEn:
-      "Gorthamar's harsh highlands, where orders and hermits guard forgotten lore.",
+      "Gorthamar is the greatest dwarven realm and the largest industrial center in the world.",
+    sectionsRu: [
+      {
+        paragraphs: [
+          "Гортмар — величайшее государство дварфов и крупнейший промышленный центр мира. Его города простираются на многие километры под горными хребтами далеко за Северными королевствами. Здесь расположены гигантские шахты, литейные комплексы, подземные крепости и древние инженерные чудеса, многие из которых работают уже сотни лет.",
+        ],
+      },
+      {
+        paragraphs: [
+          "В отличие от большинства народов мира, дварфы пережили Великий Катаклизм относительно спокойно. Когда небеса раскололись, а государства рушились одно за другим, правители Гортмара приказали закрыть Великие Врата и изолировать королевство от внешнего мира.",
+          "Многие на поверхности считают, что именно благодаря этому Гортмар сохранил своё могущество.",
+        ],
+      },
+      {
+        heading: "Царство стали",
+        paragraphs: [
+          "Дварфы Гортмара не боятся магии и не испытывают к ней религиозной ненависти. Они просто считают её плохим инструментом.",
+          "В глазах дварфийского инженера магия остаётся непредсказуемой силой, зависящей от эмоций, таланта и обстоятельств. Хороший механизм, напротив, всегда работает одинаково.",
+        ],
+      },
+      {
+        heading: "Королевство кланов",
+        paragraphs: [
+          "Несмотря на внешнее единство, Гортмар далеко не монолитен. Власть разделена между десятками древних кланов.",
+          "Наиболее влиятельными считаются:",
+          "Большинство политических конфликтов в королевстве решаются не на поле боя, а за столами переговоров, через торговые соглашения, производственные квоты и многолетние экономические интриги.",
+          "Дварфы редко воюют друг с другом. Они предпочитают десятилетиями спорить о том, кому принадлежит шахта.",
+        ],
+        bullets: [
+          "Горные дома шахтёров;",
+          "Кланы кузнецов;",
+          "Инженерные консорциумы;",
+          "Старые благородные роды;",
+          "Торговые лиги.",
+        ],
+        bulletsAfter: 1,
+      },
+    ],
+    sectionsEn: [
+      {
+        paragraphs: [
+          "Gorthamar is the greatest dwarven realm and the largest industrial center in the world. Its cities stretch for many kilometers beneath the mountain ranges far beyond the Northern Kingdoms. Here stand giant mines, foundry complexes, underground fortresses, and ancient engineering marvels—many still in operation after hundreds of years.",
+        ],
+      },
+      {
+        paragraphs: [
+          "Unlike most peoples of the world, the dwarves weathered the Great Cataclysm in relative calm. When the heavens split and realms fell one after another, Gorthamar's rulers ordered the Great Gates sealed and the kingdom cut off from the outside world.",
+          "Many on the surface believe it was this isolation that preserved Gorthamar's power.",
+        ],
+      },
+      {
+        heading: "The realm of steel",
+        paragraphs: [
+          "Gorthamar's dwarves do not fear magic nor feel religious hatred toward it. They simply consider it a poor tool.",
+          "To a dwarven engineer magic remains an unpredictable force, bound to emotion, talent, and circumstance. A good mechanism, by contrast, always works the same way.",
+        ],
+      },
+      {
+        heading: "The kingdom of clans",
+        paragraphs: [
+          "Despite outward unity Gorthamar is far from monolithic. Power is divided among dozens of ancient clans.",
+          "The most influential are held to be:",
+          "Most political conflicts in the realm are settled not on the battlefield but at negotiating tables—through trade agreements, production quotas, and intrigues that span decades.",
+          "Dwarves rarely war on one another. They prefer to spend decades arguing over who owns a mine.",
+        ],
+        bullets: [
+          "The Mountain Houses of miners;",
+          "Smith clans;",
+          "Engineering consortia;",
+          "Old noble lineages;",
+          "Trade leagues.",
+        ],
+        bulletsAfter: 1,
+      },
+    ],
     pathD:
       "M1842,469l-24,83-16,41,30,13-121,59-200-20-170,22-164-16,250-167Z",
   },
   {
     id: "shaylaan",
     svgPathId: "Shaylaan",
-    nameRu: "Шейлаан",
+    nameRu: "Шайлаан",
     nameEn: "Shaylaan",
+    images: [
+      {
+        src: "/Shaylaan2.png",
+        altRu: "Шайлаан — земля между мирами",
+        altEn: "Shaylaan — the land between worlds",
+        placement: "start",
+        width: 1024,
+        height: 311,
+      },
+      {
+        src: "/Shaylaan1.png",
+        altRu: "Шайлаан — кланы и даймё",
+        altEn: "Shaylaan — clans and daimyo",
+        placement: "clans-and-daimyo",
+        width: 1024,
+        height: 771,
+      },
+    ],
     descriptionRu:
-      "Восточный Шейлаан — сады, базары и шёпот караванов из-за Великой Пустоши.",
+      "Шайлаан — древнее и загадочное место, скрытое за кольцом неприступных гор, воздвигнутых Сошедшим Кетиром.",
     descriptionEn:
-      "Eastern Shaylaan — gardens, bazaars, and whispers of caravans from beyond the Great Waste.",
+      "Shaylaan is an ancient and mysterious land hidden behind a ring of impassable mountains raised by the Descended Ketir.",
+    sectionsRu: [
+      {
+        paragraphs: [
+          "Шайлаан — древнее и загадочное место, скрытое за кольцом неприступных гор, воздвигнутых Сошедшим Кетиром во время Великого Катаклизма.",
+          "Когда большая часть мира погрузилась в хаос, Шайлаан оказался отрезан. За прошедшие века это место превратилось в самостоятельный мир со своими законами, традициями и представлениями о реальности.",
+        ],
+      },
+      {
+        heading: "Земля между мирами",
+        paragraphs: [
+          "Шайлаан существует на границе материального мира и Мира Духов.",
+          "Прана здесь настолько плотна, что временами становится видимой.",
+          "По ночам над полями дрейфуют светящиеся огни.",
+          "В старых рощах можно услышать голоса тех, кого давно нет в живых.",
+          "Некоторые озёра отражают не настоящее, а возможное будущее.",
+          "Здесь встречаются места, которые невозможно объяснить логикой:",
+        ],
+        bullets: [
+          "долины, где время течёт медленнее;",
+          "луга, на которых никогда не наступает ночь;",
+          "леса, способные менять направление дорог;",
+          "острова, парящие среди облаков;",
+          "регионы, где исчезают цвета;",
+          "рынки, где воспоминания ценятся дороже золота.",
+        ],
+        bulletsAfter: 5,
+      },
+      {
+        heading: "Кланы и даймё",
+        anchorId: "clans-and-daimyo",
+        paragraphs: [
+          "Шайлаан не является единым государством в привычном понимании. Страна разделена между десятками кланов.",
+          "Каждый клан управляет собственной территорией, хранит древние традиции и поддерживает отношения со своими духами-покровителями.",
+        ],
+      },
+      {
+        paragraphs: [
+          "Во главе большинства земель стоят даймё — правители, одновременно являющиеся военными лидерами, судьями и посредниками между смертными и духами.",
+          "Некоторые кланы живут среди бескрайних лугов. Другие контролируют парящие острова. Третьи обитают в долинах драконов или древних лесах.",
+          "Несмотря на различия, все кланы признают священный статус Кетира и необходимость сохранять равновесие между мирами.",
+        ],
+      },
+    ],
+    sectionsEn: [
+      {
+        paragraphs: [
+          "Shaylaan is an ancient and mysterious land hidden behind a ring of impassable mountains raised by the Descended Ketir during the Great Cataclysm.",
+          "When much of the world sank into chaos Shaylaan was cut off. Over the centuries it became a world unto itself—with its own laws, traditions, and understanding of reality.",
+        ],
+      },
+      {
+        heading: "The land between worlds",
+        paragraphs: [
+          "Shaylaan exists on the border of the material world and the Spirit World.",
+          "Prana here is so dense it sometimes becomes visible.",
+          "At night luminous lights drift above the fields.",
+          "In old groves one may hear the voices of those long dead.",
+          "Some lakes reflect not the present but a possible future.",
+          "Here one finds places logic cannot explain:",
+        ],
+        bullets: [
+          "valleys where time flows more slowly;",
+          "meadows where night never falls;",
+          "forests that shift the direction of roads;",
+          "islands floating among the clouds;",
+          "regions where color vanishes;",
+          "markets where memories are worth more than gold.",
+        ],
+        bulletsAfter: 5,
+      },
+      {
+        heading: "Clans and daimyo",
+        anchorId: "clans-and-daimyo",
+        paragraphs: [
+          "Shaylaan is not a single state in the usual sense. The country is divided among dozens of clans.",
+          "Each clan governs its own territory, keeps ancient traditions, and maintains ties with its guardian spirits.",
+        ],
+      },
+      {
+        paragraphs: [
+          "Most lands are led by daimyo—rulers who are at once war leaders, judges, and mediators between mortals and spirits.",
+          "Some clans live among endless meadows. Others control floating islands. Still others dwell in dragon valleys or ancient forests.",
+          "Despite their differences all clans honor Ketir's sacred status and the need to preserve balance between the worlds.",
+        ],
+      },
+    ],
     pathD:
       "M2494,786l-290,4L1945,940l-79,213-125,156-4,197,18,234,88,256,157,158,156,123,315,86,344-100,197-179,202-227,29-292-45-276-125-188L2933,931l-134-73Z",
   },
@@ -403,11 +972,13 @@ export function getRegionDescriptionParagraphs(
 export function getRegionImages(
   region: Region,
   locale: string,
-): { src: string; alt: string }[] {
+): { src: string; alt: string; width?: number; height?: number }[] {
   if (!region.images?.length) return [];
   return region.images.map((image) => ({
     src: image.src,
     alt: locale === "en" ? image.altEn : image.altRu,
+    width: image.width,
+    height: image.height,
   }));
 }
 
@@ -415,12 +986,14 @@ export function getRegionImageByPlacement(
   region: Region,
   placement: string,
   locale: string,
-): { src: string; alt: string } | null {
+): { src: string; alt: string; width?: number; height?: number } | null {
   const image = region.images?.find((item) => item.placement === placement);
   if (!image) return null;
   return {
     src: image.src,
     alt: locale === "en" ? image.altEn : image.altRu,
+    width: image.width,
+    height: image.height,
   };
 }
 

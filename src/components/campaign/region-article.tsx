@@ -4,6 +4,7 @@ import { useState } from "react";
 import {
   ImageLightbox,
   RegionThumbnail,
+  isWideBannerImage,
   type GalleryImage,
 } from "@/components/campaign/region-image-gallery";
 import {
@@ -39,7 +40,7 @@ function RegionSectionContent({ section }: { section: RegionContentSection }) {
           {section.heading}
         </h4>
       )}
-      <div className="space-y-4 leading-relaxed text-zinc-400">
+      <div className="space-y-4 leading-relaxed text-zinc-300">
         {section.paragraphs.map((paragraph, index) => (
           <div key={index}>
             <p>{paragraph}</p>
@@ -84,7 +85,7 @@ export function RegionArticle({ region, locale }: RegionArticleProps) {
     const images = getRegionImages(region, locale);
     return (
       <article id={region.id} className="scroll-mt-[100px]">
-        <div className="grid gap-8 md:grid-cols-[minmax(0,280px)_1fr] md:items-start">
+        <div className="relative z-10 grid gap-8 md:grid-cols-[minmax(0,280px)_1fr] md:items-start">
           <div>
             {images.length > 0 ? (
               <div className="space-y-2">
@@ -92,6 +93,7 @@ export function RegionArticle({ region, locale }: RegionArticleProps) {
                   <RegionThumbnail
                     key={image.src}
                     image={image}
+                    overlay
                     onOpen={() => openLightbox(image)}
                   />
                 ))}
@@ -121,26 +123,28 @@ export function RegionArticle({ region, locale }: RegionArticleProps) {
 
   return (
     <article id={region.id} className="scroll-mt-[100px]">
-      <div className="space-y-8">
+      <div className="relative z-10 space-y-8">
         {sections.map((section, sectionIndex) => {
           const placement = getSectionImagePlacement(section, sectionIndex);
           const image =
             placement !== null
               ? getRegionImageByPlacement(region, placement, locale)
               : null;
+          const wideBanner = image !== null && isWideBannerImage(image);
 
           return (
             <div
               key={sectionIndex}
               className={
-                image
+                image && !wideBanner
                   ? "grid gap-6 md:grid-cols-[minmax(0,280px)_1fr] md:items-start md:gap-8"
-                  : undefined
+                  : "space-y-6"
               }
             >
               {image ? (
                 <RegionThumbnail
                   image={image}
+                  overlay
                   onOpen={() => openLightbox(image)}
                 />
               ) : null}
