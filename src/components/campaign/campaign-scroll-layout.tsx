@@ -3,7 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { CampaignMobileNav } from "@/components/campaign/campaign-mobile-nav";
-import { CampaignTextPanel } from "@/components/campaign/campaign-text-panel";
+import { CampaignFontSizeControl } from "@/components/campaign/campaign-font-size-control";
+import { useCampaignFontSize } from "@/components/campaign/campaign-font-size";
+import { CampaignTextPanel, CampaignProse } from "@/components/campaign/campaign-text-panel";
 import {
   getActiveCampaignSectionId,
   scrollToCampaignTarget,
@@ -44,6 +46,7 @@ function scrollToSection(id: SectionId) {
 
 export function CampaignScrollLayout() {
   const t = useTranslations("campaign");
+  const { fontSize, setFontSize } = useCampaignFontSize();
   const [activeId, setActiveId] = useState<SectionId>("preface");
   const scrollingToRef = useRef<SectionId | null>(null);
   const scrollEndTimerRef = useRef<number | null>(null);
@@ -114,7 +117,7 @@ export function CampaignScrollLayout() {
   }
 
   function navLinkClass(id: string, isActive: boolean) {
-    return `relative block border-l-2 py-2.5 pl-5 pr-3 text-sm font-medium uppercase tracking-widest transition-colors ${
+    return `relative block border-l-2 py-2 pl-4 pr-2 text-xs font-medium uppercase tracking-widest transition-colors xl:py-2.5 xl:pl-5 xl:pr-3 xl:text-sm ${
       isActive
         ? "border-amber-500 bg-amber-500/10 text-amber-400"
         : "border-zinc-700/80 text-zinc-400 hover:border-amber-900/60 hover:text-amber-300/90"
@@ -122,14 +125,14 @@ export function CampaignScrollLayout() {
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-6 lg:grid lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-12 lg:px-8 xl:grid-cols-[16rem_minmax(0,1fr)]">
-      {/* Sidebar — desktop only; grid row stretches so inner nav can stick */}
-      <aside className="hidden lg:block">
+    <div className="w-full px-4 sm:px-6 lg:grid lg:grid-cols-[minmax(0,1fr)_min(44rem,calc(100%-2rem))_minmax(0,1fr)] lg:gap-x-6 lg:px-8 xl:grid-cols-[minmax(0,1fr)_min(64rem,calc(100%-2rem))_minmax(0,1fr)] xl:gap-x-10 2xl:grid-cols-[minmax(0,1fr)_min(72rem,calc(100%-2rem))_minmax(0,1fr)]">
+      {/* Sidebar — sticky on the column; self-start + tall grid row = follows scroll */}
+      <aside className="hidden lg:sticky lg:top-[88px] lg:col-start-1 lg:z-30 lg:block lg:w-full lg:max-w-[10.5rem] lg:justify-self-end lg:self-start xl:top-[100px] xl:max-w-[14rem] 2xl:max-w-[16rem]">
         <nav
-          className={`sticky top-[100px] ${CONTENT_PANEL_CLASS} py-5`}
+          className={`${CONTENT_PANEL_CLASS} py-4 xl:py-5`}
           aria-label="Campaign sections"
         >
-          <p className="mb-6 pl-5 text-xs font-medium uppercase tracking-[0.35em] text-amber-500/80">
+          <p className="mb-4 pl-4 text-[10px] font-medium uppercase tracking-[0.28em] text-amber-500/80 xl:mb-6 xl:pl-5 xl:text-xs xl:tracking-[0.35em]">
             {t("sections.toc")}
           </p>
           <ul className="space-y-0.5">
@@ -160,7 +163,7 @@ export function CampaignScrollLayout() {
             })}
             <li>
               <span
-                className="block border-l-2 border-zinc-700/80 py-2.5 pl-5 pr-3 text-sm font-medium uppercase tracking-widest text-zinc-500"
+                className="block border-l-2 border-zinc-700/80 py-2 pl-4 pr-2 text-xs font-medium uppercase tracking-widest text-zinc-500 xl:py-2.5 xl:pl-5 xl:pr-3 xl:text-sm"
                 title={t("sections.gmOnly")}
               >
                 <span aria-hidden>🔒 </span>
@@ -168,26 +171,32 @@ export function CampaignScrollLayout() {
               </span>
             </li>
           </ul>
+          <CampaignFontSizeControl fontSize={fontSize} onChange={setFontSize} />
         </nav>
       </aside>
 
-      {/* Main content */}
-      <main className={`min-w-0 ${CONTENT_PANEL_CLASS} px-6 py-16 sm:px-8 sm:py-20`}>
+      {/* Main — viewport-centered column on lg+ */}
+      <main
+        data-font-size={fontSize}
+        className={`campaign-font-scope mx-auto min-w-0 w-full max-w-3xl lg:col-start-2 lg:mx-0 lg:max-w-none ${CONTENT_PANEL_CLASS} px-6 py-16 sm:px-8 sm:py-20`}
+      >
         <header className="mb-8 border-b border-amber-900/25 pb-12 lg:mb-16">
-          <p className="text-sm font-medium uppercase tracking-[0.35em] text-amber-500/80">
+          <p className="campaign-text-ui text-sm font-medium uppercase tracking-[0.35em] text-amber-500/80">
             {t("hub.eyebrow")}
           </p>
-          <h1 className="mt-4 font-serif text-4xl font-semibold text-zinc-50 sm:text-5xl">
+          <h1 className="campaign-heading-1 mt-4 font-serif text-4xl font-semibold text-zinc-50 sm:text-5xl">
             {t("hub.title")}
           </h1>
-          <p className="mt-4 text-lg leading-relaxed text-zinc-300">
-            {t("hub.subtitle")}
-          </p>
+          <CampaignProse className="campaign-text-subtitle mt-4 text-lg">
+            <p>{t("hub.subtitle")}</p>
+          </CampaignProse>
         </header>
 
         <CampaignMobileNav
           activeId={activeId}
           onNavigate={navigateToSection}
+          fontSize={fontSize}
+          onFontSizeChange={setFontSize}
         />
 
         <div className="space-y-4">
@@ -200,7 +209,7 @@ export function CampaignScrollLayout() {
                 className="scroll-mt-[100px] py-20"
               >
                 <CampaignTextPanel>
-                  <h2 className="relative z-10 mb-8 font-serif text-3xl font-semibold text-amber-100/90">
+                  <h2 className="campaign-heading-2 relative z-10 mb-8 font-serif text-3xl font-semibold text-amber-100/90">
                     {label}
                   </h2>
                   {id === "preface" ? (
@@ -212,9 +221,9 @@ export function CampaignScrollLayout() {
                   ) : id === "factions" ? (
                     <FactionsSection />
                   ) : (
-                    <p className="relative z-10 leading-relaxed text-zinc-300">
-                      {t("placeholder", { section: label })}
-                    </p>
+                    <CampaignProse>
+                      <p>{t("placeholder", { section: label })}</p>
+                    </CampaignProse>
                   )}
                 </CampaignTextPanel>
                 {id === "world-map" ? <WorldMapRegions /> : null}
@@ -228,17 +237,20 @@ export function CampaignScrollLayout() {
             aria-label={t(`sections.${LOCKED_SECTION.titleKey}`)}
           >
             <CampaignTextPanel>
-              <h2 className="relative z-10 mb-8 flex items-center gap-3 font-serif text-3xl font-semibold text-zinc-500">
+              <h2 className="campaign-heading-2 relative z-10 mb-8 flex items-center gap-3 font-serif text-3xl font-semibold text-zinc-500">
                 <span aria-hidden>🔒</span>
                 {t(`sections.${LOCKED_SECTION.titleKey}`)}
               </h2>
-              <p className="relative z-10 leading-relaxed text-zinc-500">
-                {t("gmLocked")}
-              </p>
+              <CampaignProse>
+                <p className="text-zinc-500">{t("gmLocked")}</p>
+              </CampaignProse>
             </CampaignTextPanel>
           </section>
         </div>
       </main>
+
+      {/* Balances the sidebar so the center column stays viewport-centered */}
+      <div className="hidden lg:block" aria-hidden />
     </div>
   );
 }

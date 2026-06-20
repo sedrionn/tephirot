@@ -46,6 +46,11 @@
       "gmOnly": "For Game Masters",
       "toc": "Contents"
     },
+    "fontSize": {
+      "label": "Text size",
+      "normal": "Normal",
+      "large": "Large"
+    },
     "overview": {
       "intro": "Tephirot is an adventure set in the desert lands of a fallen Technocracy. You can play it as a series of unconnected quests or as a sequential narrative that draws players into exploring the world.",
       "pillars": [
@@ -64,7 +69,7 @@
       ]
     },
     "preface": {
-      "imageAlt": "Desert dunes and ruins of Tul'Osar at dusk",
+      "imageAlt": "A bustling bazaar before the stone gates of the desert city of Ksianor",
       "paragraphs": [
         "The golden age of the Tul'Osar Technocracy ended in an instant.",
         "These lands were once a flourishing edge of oases and deep canyons, where magic and technology advanced hand in hand. Now only sand and ruins remain.",

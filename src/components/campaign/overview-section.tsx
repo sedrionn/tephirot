@@ -2,6 +2,8 @@
 
 import { useTranslations } from "next-intl";
 
+import { CampaignProse } from "@/components/campaign/campaign-text-panel";
+
 type OverviewPillar = {
   title: string;
   text: string;
@@ -13,15 +15,17 @@ export function OverviewSection() {
 
   return (
     <>
-      <p className="relative z-10 leading-relaxed text-zinc-300">{t("intro")}</p>
+      <CampaignProse className="relative z-10">
+        <p>{t("intro")}</p>
+      </CampaignProse>
       <div className="relative z-10 mt-10 space-y-10">
         {pillars.map(({ title, text }) => (
-          <div key={title}>
-            <h3 className="font-serif text-xl font-semibold text-amber-200/95">
+          <CampaignProse key={title}>
+            <h3 className="campaign-heading-3 font-serif text-xl font-semibold text-amber-200/95">
               {title}
             </h3>
-            <p className="mt-3 leading-relaxed text-zinc-300">{text}</p>
-          </div>
+            <p className="mt-3">{text}</p>
+          </CampaignProse>
         ))}
       </div>
     </>

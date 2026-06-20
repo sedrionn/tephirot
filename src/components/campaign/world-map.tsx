@@ -36,7 +36,7 @@ export function WorldMap() {
             alt=""
             fill
             className="object-contain"
-            sizes="(max-width: 1024px) 100vw, 896px"
+            sizes="(max-width: 1152px) 100vw, 1152px"
             priority
           />
           <svg
@@ -101,7 +101,7 @@ export function WorldMap() {
               <button
                 type="button"
                 onClick={() => handleRegionSelect(region.id)}
-                className={`rounded-md border px-3 py-1.5 text-sm transition-colors ${
+                className={`campaign-text-ui rounded-md border px-3 py-1.5 text-sm transition-colors ${
                   focusedId === region.id
                     ? "border-amber-500/60 bg-amber-500/15 text-amber-300"
                     : "border-zinc-700 bg-zinc-900/60 text-zinc-400 hover:border-amber-900/50 hover:text-amber-200/90"

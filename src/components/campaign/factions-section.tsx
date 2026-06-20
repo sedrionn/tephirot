@@ -2,6 +2,8 @@
 
 import { useTranslations } from "next-intl";
 
+import { CampaignProse } from "@/components/campaign/campaign-text-panel";
+
 type FactionEntry = {
   id: string;
   name: string;
@@ -16,14 +18,14 @@ export function FactionsSection() {
     <div className="relative z-10 space-y-10">
       {entries.map(({ id, name, paragraphs }) => (
         <article key={id} id={id} className="scroll-mt-[100px]">
-          <h3 className="font-serif text-xl font-semibold text-amber-200/95">
-            {name}
-          </h3>
-          <div className="mt-3 space-y-4 leading-relaxed text-zinc-300">
+          <CampaignProse className="space-y-4">
+            <h3 className="campaign-heading-3 font-serif text-xl font-semibold text-amber-200/95">
+              {name}
+            </h3>
             {paragraphs.map((paragraph, index) => (
               <p key={index}>{paragraph}</p>
             ))}
-          </div>
+          </CampaignProse>
         </article>
       ))}
     </div>

@@ -57,7 +57,7 @@ export function RegionThumbnail({
             ? "h-auto w-full object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,0.35)] transition-transform duration-200 group-hover:scale-[1.01]"
             : "object-cover transition-transform duration-200 group-hover:scale-105"
         }
-        sizes={wide ? "(max-width: 1024px) 100vw, 896px" : "(max-width: 768px) 100vw, 280px"}
+        sizes={wide ? "(max-width: 1152px) 100vw, 1152px" : "(max-width: 768px) 100vw, 280px"}
       />
     </button>
   );

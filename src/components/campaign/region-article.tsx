@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { CampaignProse } from "@/components/campaign/campaign-text-panel";
 import {
   ImageLightbox,
   RegionThumbnail,
@@ -34,28 +35,26 @@ function RegionPlaceholderImage({ name }: { name: string }) {
 
 function RegionSectionContent({ section }: { section: RegionContentSection }) {
   return (
-    <div>
+    <div className="space-y-4">
       {section.heading && (
-        <h4 className="mb-3 font-serif text-lg font-medium text-amber-200/90">
+        <h4 className="campaign-heading-4 font-serif text-lg font-medium text-amber-200/90">
           {section.heading}
         </h4>
       )}
-      <div className="space-y-4 leading-relaxed text-zinc-300">
-        {section.paragraphs.map((paragraph, index) => (
-          <div key={index}>
-            <p>{paragraph}</p>
-            {section.bullets &&
-              section.bullets.length > 0 &&
-              (section.bulletsAfter ?? -1) === index && (
-                <ul className="mt-4 list-disc space-y-2 pl-5 marker:text-amber-600/70">
-                  {section.bullets.map((item, bulletIndex) => (
-                    <li key={bulletIndex}>{item}</li>
-                  ))}
-                </ul>
-              )}
-          </div>
-        ))}
-      </div>
+      {section.paragraphs.map((paragraph, index) => (
+        <div key={index}>
+          <p>{paragraph}</p>
+          {section.bullets &&
+            section.bullets.length > 0 &&
+            (section.bulletsAfter ?? -1) === index && (
+              <ul className="mt-4 list-disc space-y-2 pl-5 marker:text-amber-600/70">
+                {section.bullets.map((item, bulletIndex) => (
+                  <li key={bulletIndex}>{item}</li>
+                ))}
+              </ul>
+            )}
+        </div>
+      ))}
     </div>
   );
 }
@@ -85,8 +84,8 @@ export function RegionArticle({ region, locale }: RegionArticleProps) {
     const images = getRegionImages(region, locale);
     return (
       <article id={region.id} className="scroll-mt-[100px]">
-        <div className="relative z-10 grid gap-8 md:grid-cols-[minmax(0,280px)_1fr] md:items-start">
-          <div>
+        <div className="relative z-10 flex flex-col gap-8 md:flex-row md:items-start">
+          <div className="shrink-0 md:w-[280px]">
             {images.length > 0 ? (
               <div className="space-y-2">
                 {images.map((image) => (
@@ -102,15 +101,15 @@ export function RegionArticle({ region, locale }: RegionArticleProps) {
               <RegionPlaceholderImage name={name} />
             )}
           </div>
-          <div>
-            <h3 className="font-serif text-2xl font-semibold text-amber-100/90">
-              {name}
-            </h3>
-            <div className="mt-4 space-y-8">
+          <div className="min-w-0 flex-1">
+            <CampaignProse className="space-y-8">
+              <h3 className="campaign-heading-3 font-serif text-2xl font-semibold text-amber-100/90">
+                {name}
+              </h3>
               {sections.map((section, sectionIndex) => (
                 <RegionSectionContent key={sectionIndex} section={section} />
               ))}
-            </div>
+            </CampaignProse>
           </div>
         </div>
         <ImageLightbox
@@ -137,24 +136,28 @@ export function RegionArticle({ region, locale }: RegionArticleProps) {
               key={sectionIndex}
               className={
                 image && !wideBanner
-                  ? "grid gap-6 md:grid-cols-[minmax(0,280px)_1fr] md:items-start md:gap-8"
+                  ? "flex flex-col gap-6 md:flex-row md:items-start md:gap-8"
                   : "space-y-6"
               }
             >
               {image ? (
-                <RegionThumbnail
-                  image={image}
-                  overlay
-                  onOpen={() => openLightbox(image)}
-                />
+                <div className={wideBanner ? undefined : "shrink-0 md:w-[280px]"}>
+                  <RegionThumbnail
+                    image={image}
+                    overlay
+                    onOpen={() => openLightbox(image)}
+                  />
+                </div>
               ) : null}
-              <div>
-                {sectionIndex === 0 && (
-                  <h3 className="mb-4 font-serif text-2xl font-semibold text-amber-100/90">
-                    {name}
-                  </h3>
-                )}
-                <RegionSectionContent section={section} />
+              <div className="min-w-0 flex-1">
+                <CampaignProse className="space-y-4">
+                  {sectionIndex === 0 && (
+                    <h3 className="campaign-heading-3 font-serif text-2xl font-semibold text-amber-100/90">
+                      {name}
+                    </h3>
+                  )}
+                  <RegionSectionContent section={section} />
+                </CampaignProse>
               </div>
             </div>
           );
